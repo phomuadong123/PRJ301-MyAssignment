@@ -16,6 +16,7 @@ public class User {
     private int studentId;
     private int instructorId;
     private String displayname;
+   
     public int getRoleId() {
         return roleId;
     }
