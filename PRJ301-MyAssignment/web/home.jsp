@@ -13,35 +13,45 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
 
-
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-        <!-- MDB icon -->
-        <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon" />
-        <!-- Font Awesome -->
-        <link
-            rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-            />
-        <!-- Google Fonts Roboto -->
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
-            />
-        <!-- MDB -->
-        <link rel="stylesheet" href="css/mdb.min.css" />
-
-        <script type="text/javascript">
-            function warningAddToCart() {
-                alert("You must be logged in to shop now !")
-            }
-        </script>
     </head>
 
     <body>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1><span>FPT University Academic Portal</span>
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <table>
+                    <tbody><tr>
+                            <td colspan="2" class="auto-style1"><strong>FAP mobile app (myFAP) is ready at</strong></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://apps.apple.com/app/id1527723314">
+                                    <img src="https://fap.fpt.edu.vn/images/app-store.png" style="width: 120px; height: 40px" alt="apple store"></a></td>
+                            <td><a href="https://play.google.com/store/apps/details?id=com.fuct">
+                                    <img src="https://fap.fpt.edu.vn/images/play-store.png" style="width: 120px; height: 40px" alt="google store"></a></td>
+                        </tr>
+                    </tbody></table>
+            </div>
+        </div>
 
         <!-- Button trigger modal -->
 
-        <%@include file="header.jsp" %>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-secondary">Secondary</button>
+        <button type="button" class="btn btn-success">Success</button>
+        <button type="button" class="btn btn-danger">Danger</button>
+        <button type="button" class="btn btn-warning">Warning</button>
+        <button type="button" class="btn btn-info">Info</button>
+        <button type="button" class="btn btn-light">Light</button>
+        <button type="button" class="btn btn-dark">Dark</button>
+
+        <button type="button" class="btn btn-link">Link</button>
         <!--Main layout-->
         <main>
             <div class="container">
@@ -106,61 +116,7 @@
 
 
 
-                            <c:forEach items="${requestScope.product}" var="p">
 
-                                <div class="col-lg-3 col-md-6 mb-4" style="border-radius: 0 ">
-                                    <div class="card" style="">
-                                        <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                                             data-mdb-ripple-color="light">
-
-                                            <img style="height: 261px;" src="${p.image}"
-                                                 class="w-100" />
-
-                                            <a href="detail?pid=${p.id}">              
-                                                <div class="hover-overlay">
-                                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <a href="detail?pid=${p.id}" style="padding: 1px 8px; color: #607D8B">
-                                            <div class="" style="">
-                                                <p class="text-reset">
-                                                <p ${p.name}</p>
-                                                </p>
-                                                <p href="" class="text-reset ">
-                                                <p style="height: 57px; overflow: hidden; padding: 0 8px">${p.title}</p>
-                                                </p>
-                                                <p class="lead">
-                                                    <span class="me-1">
-                                                        <del>$${p.price*2}</del>
-                                                    </span>
-                                                    <span>$${p.price}</span>
-                                                    <c:if test="${((sessionScope.account) != null)}">
-                                                        <a href="buy?id=${p.id}&quantity=1" >
-                                                            <button style="margin-left: 40px; color: orange" type="submit" class="btn btn-light"><i class="fa-brands fa-shopify"></i></button>
-                                                        </a>
-                                                    </c:if>
-                                                    
-                                                     <c:if test="${((sessionScope.account) == null)}">
-                                                        <a href="home" >
-                                                            <button style="margin-left: 40px;color: orange" type="submit" onclick="warningAddToCart()"
-                                                                    class="btn btn-light"><i class="fa-brands fa-shopify"></i></button>
-                                                        </a>
-                                                    </c:if>
-                                                </p>
-
-                                            </div>
-                                        </a>
-
-
-
-
-
-                                    </div>
-                                </div> 
-
-
-                            </c:forEach>
 
 
 
@@ -179,9 +135,7 @@
                             </a>
                         </li>
 
-                        <c:forEach begin="1" end="${endpage}" var="i">
-                            <li  class="page-item ${(tagindex==i)?"active":""}"><a class="page-link" href="home?index=${i}">${i}</a></li>
-                            </c:forEach>
+
 
 
 
@@ -196,9 +150,9 @@
             </div>
         </main>
         <!--Main layout-->
-        <%@include file="footer.jsp" %>
 
 
+        </div>
     </body>
 
 </html>
