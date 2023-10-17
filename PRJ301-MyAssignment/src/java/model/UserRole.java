@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author sonnt
  */
-public class Role  {
+public class UserRole  {
     private int id;
     private String name;
 
