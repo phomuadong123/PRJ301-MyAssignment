@@ -12,14 +12,15 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <link href="../css/style.css" rel="stylesheet" type="text/css"/>
+        
     </head>
-    <body>
+    <body style="height: 100vh;">
         <section class="h-100 gradient-form" style="background-color: #eee;">
             <div class="container py-5 h-100">
                 <div class="row d-flex justify-content-center align-items-center h-100">
                     <div class="col-xl-10">
-                        <div class="card rounded-3 text-black">
+                        <div class="card text-black" style=" box-shadow: none; border-radius: 10%px">
                             <div class="row g-0">
                                 <div class="col-lg-6">
                                     <div class="card-body p-md-5 mx-md-4">
@@ -30,24 +31,24 @@
                                                  style="width: 185px;" alt="logo">                                           
                                         </div>
 
-                                        <form>
-                                            <p class="mb-4" style="font-weight: 600">Please login to your account</p>
+                                        <form action="login" method="post">
+                                            <p class="mb-4" style="font-weight: 700; font-size: 18px">Please login to your account</p>
 
                                             <div class="form-outline mb-4">
-                                                <label class="form-label" for="form2Example11">Username</label>
-                                                <input type="email" id="form2Example11" class="form-control"
+                                                <label class="form-label" style="font-weight: 700" for="form2Example11">Username</label>
+                                                <input name="username" id="form2Example11" type="text"   class="form-control"
                                                        placeholder="Username" />
 
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <label class="form-label" for="form2Example22">Password</label>
-                                                <input type="password" id="form2Example22" class="form-control" placeholder="Password"/>
+                                                <label class="form-label" style="font-weight: 700" for="form2Example22">Password</label>
+                                                <input name="password" type="password" id="form2Example22" class="form-control" placeholder="Password"/>
 
                                             </div>
 
                                             <div class="text-center pt-1 mb-5 pb-1">
-                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button">Log
+                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log
                                                     in</button>
                                                 <a class="text-muted" href="#!">Forgot password?</a>
                                             </div>
