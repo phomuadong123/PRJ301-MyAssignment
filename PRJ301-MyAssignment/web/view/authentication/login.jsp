@@ -12,6 +12,8 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <h1>${requestScope.error}</h1>
+        
         <form action="login" method="POST">
             Username: <input type="text" name="username" /> <br/>
             Password: <input type="password" name="password" /> <br/>

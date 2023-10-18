@@ -21,7 +21,7 @@ public abstract class BaseRequiredAuthenticatedControllerForInstructor extends H
 
     private boolean isAuthenticated(HttpServletRequest request) {
         User u =  (User)request.getSession().getAttribute("user"); 
-         return u !=null && u.getRoleId() == 2;
+        return u !=null && u.getRoleId() == 2;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

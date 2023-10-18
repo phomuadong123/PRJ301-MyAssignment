@@ -4,57 +4,27 @@
  */
 package model;
 
+import java.sql.Date;
+
 /**
  *
  * @author tuant
  */
 public class Student {
-    private String studentCode;
-    private String givenName;
+    private int studentid;
+    private String rollnumber;
     private String fullName;
-    private String image;
+    private Date dob;
+    private boolean gender;
+    private String address;
+    private String telephone;
+    private String email;
+    private Group group;
 
     public Student() {
     }
 
-    public Student(String studentCode, String givenName, String fullName, String image) {
-        this.studentCode = studentCode;
-        this.givenName = givenName;
-        this.fullName = fullName;
-        this.image = image;
-    }
-
-    public String getStudentCode() {
-        return studentCode;
-    }
-
-    public String getGivenName() {
-        return givenName;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setStudentCode(String studentCode) {
-        this.studentCode = studentCode;
-    }
-
-    public void setGivenName(String givenName) {
-        this.givenName = givenName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
+   
     
     
 }
