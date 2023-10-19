@@ -5,6 +5,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,14 +15,13 @@ public class Instructor {
 
     private int instructorId;
     private String instrnumber;
-    private String firstName;
-    private String lastName;
+    private String fullName;
     private Date dob;
-    private boolean gender;
     private String Telephone;
     private String email;
     private String address;
-    private Department depart;
+    private ArrayList<Group> group = new ArrayList<>();
+    private ArrayList<Session> sessions = new ArrayList<>();
 
     public String getTelephone() {
         return Telephone;
@@ -55,36 +55,12 @@ public class Instructor {
         this.instrnumber = instrnumber;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public Date getDob() {
         return dob;
     }
 
     public void setDob(Date dob) {
         this.dob = dob;
-    }
-
-    public boolean isGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
     }
 
     public String getAddress() {
@@ -95,13 +71,4 @@ public class Instructor {
         this.address = address;
     }
 
-    public Department getDepart() {
-        return depart;
-    }
-
-    public void setDepart(Department depart) {
-        this.depart = depart;
-    }
-    
-    
 }

@@ -21,6 +21,7 @@ public class Session {
     private Room room;
     private Attendance attendance;
     private int weekday;
+    
     public Session() {
     }
 

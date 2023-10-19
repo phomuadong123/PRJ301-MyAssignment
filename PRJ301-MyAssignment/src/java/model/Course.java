@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 
 /**
  *
@@ -13,6 +15,7 @@ public class Course {
     private int courseId;
     private String name;
     private String code;
+    private ArrayList<Group> groups = new ArrayList<>();
 
     public Course() {
     }

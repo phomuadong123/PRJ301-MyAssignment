@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author duong
@@ -11,7 +13,8 @@ package model;
 public class Room {
     private int roomId;
     private String rname;
-
+    private ArrayList<Session> sessions = new ArrayList<>();
+    
     public Room() {
     }
 
