@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class TimeSlot {
 
     private int slotId;
-    private Time timeFrom;
-    private Time timeTo;
+    private String timeFrom;
+    private String timeTo;
     private ArrayList<Session> sessions = new ArrayList<>();
     
     public TimeSlot() {
@@ -28,20 +28,6 @@ public class TimeSlot {
         this.slotId = slotId;
     }
 
-    public Time getTimeFrom() {
-        return timeFrom;
-    }
-
-    public void setTimeFrom(Time timeFrom) {
-        this.timeFrom = timeFrom;
-    }
-
-    public Time getTimeTo() {
-        return timeTo;
-    }
-
-    public void setTimeTo(Time timeTo) {
-        this.timeTo = timeTo;
-    }
+   
 
 }

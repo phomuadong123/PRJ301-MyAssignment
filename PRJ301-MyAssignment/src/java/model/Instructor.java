@@ -20,7 +20,7 @@ public class Instructor {
     private String Telephone;
     private String email;
     private String address;
-    private ArrayList<Group> group = new ArrayList<>();
+    private ArrayList<Group> groups = new ArrayList<>();
     private ArrayList<Session> sessions = new ArrayList<>();
 
     public String getTelephone() {

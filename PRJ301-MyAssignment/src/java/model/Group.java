@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author duong
@@ -11,6 +13,7 @@ package model;
 public class Group {
     private int groupId;
     private String groupName;
+    private ArrayList<Student> students = new ArrayList<>();
     private Course course;
     private Instructor instructor;
 
