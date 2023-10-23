@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller.instructor;
 
 import controller.authentication.BaseRequiredAuthenticatedControllerForInstructor;
@@ -29,20 +28,20 @@ import model.User;
  *
  * @author tuant
  */
-@WebServlet(name="TimetableInstructorServlet", urlPatterns={"/timetableInstructor"})
+@WebServlet(name = "TimetableInstructorServlet", urlPatterns = {"/timetableInstructor"})
 
-public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControllerForInstructor  {
+public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControllerForInstructor {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
-       String raw_week = request.getParameter("week");
-       String year_raw = request.getParameter("year");
-        
+        String raw_week = request.getParameter("week");
+        String year_raw = request.getParameter("year");
+
         TimeSlotDAO timeSlotDAO = new TimeSlotDAO();
         ArrayList<TimeSlot> slots = timeSlotDAO.getAllTimeSlot();
-        request.setAttribute("slots", slots);
-        
          
+        request.setAttribute("slots", slots);
+
         LocalDate currentdate = LocalDate.now();
         int currentYear = currentdate.getYear();
         int currYearrr = currentdate.getYear();
@@ -59,13 +58,13 @@ public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControl
         }
         request.setAttribute("yearCurrent", currentYear);
         request.setAttribute("list", list);
-        
+
         if (raw_week == null && currentYear == currYearrr) {
             int currentWeek = getCurrentWeek();
             ArrayList<String> allDay = getEachDayByWeek(currentWeek, currentYear);
             request.setAttribute("current", currentWeek);
             request.setAttribute("days", allDay);
-        }else if (raw_week != null && currentYear == currYearrr) {
+        } else if (raw_week != null && currentYear == currYearrr) {
             ArrayList<String> allDay = getEachDayByWeek(Integer.parseInt(raw_week), currentYear);
             request.setAttribute("current", Integer.parseInt(raw_week));
             request.setAttribute("days", allDay);
@@ -80,13 +79,16 @@ public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControl
             String dateFrom = allDay.get(0);
             String dateTo = allDay.get(allDay.size() - 1);
             SessionDAO sessionDAO = new SessionDAO();
-            user =  (User) request.getSession().getAttribute("user");
+            user = (User) request.getSession().getAttribute("user");
             ArrayList<Session> l = sessionDAO.getAllSlotInWeek(user.getInstructorId(), Date.valueOf(dateFrom), Date.valueOf(dateTo));
             if (l == null) {
 
             } else {
                 request.setAttribute("schedule", l);
             }
+            System.out.println(Date.valueOf(dateFrom));
+            System.out.println(Date.valueOf(dateTo));
+            System.out.println(user.getInstructorId());
         } else {
             int currentw = getCurrentWeek();
             ArrayList<String> date = getEachDayByWeekIndb(currentw, currentYear);
@@ -95,25 +97,28 @@ public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControl
             SessionDAO sessionDAO = new SessionDAO();
             user = (User) request.getSession().getAttribute("user");
             ArrayList<Session> l = sessionDAO.getAllSlotInWeek(user.getInstructorId(), Date.valueOf(dateFrom), Date.valueOf(dateTo));
-
+            
             if (l == null) {
-
+;
             } else {
                 request.setAttribute("schedule", l);
             }
+            System.out.println(Date.valueOf(dateFrom));
+            System.out.println(Date.valueOf(dateTo));
+            System.out.println(user.getInstructorId());
 
         }
 
         request.getRequestDispatcher("view/Instructor/timetableInstructor.jsp").forward(request, response);
-
+        
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
         
     }
-    
-     private int getCurrentWeek() {
+
+    private int getCurrentWeek() {
         Calendar cal = Calendar.getInstance(Locale.GERMANY);
         int currentWeek = cal.get(Calendar.WEEK_OF_YEAR);
         return currentWeek;
@@ -185,7 +190,5 @@ public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControl
         }
         return list;
     }
-   
-   
 
 }

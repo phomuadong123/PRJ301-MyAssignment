@@ -18,22 +18,18 @@ public class TimeSlotDAO extends DBContext {
 
     public ArrayList<TimeSlot> getAllTimeSlot() {
         ArrayList<TimeSlot> list = new ArrayList<>();
-        String sql = "SELECT [slotId]\n"
-                + "      ,[timeFrom]\n"
-                + "      ,[timeTo]\n"
-                + "  FROM [PRJ301_ASSIGNMENT].[dbo].[TimeSlot]";
+        String sql = "SELECT * FROM [TimeSlot]";
         try {
             PreparedStatement st = connection.prepareCall(sql);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 TimeSlot timeSlot = new TimeSlot(rs.getInt("slotId"), rs.getTime("timeFrom"), rs.getTime("timeTo"));
-                
                 list.add(timeSlot);
             }
 
         } catch (SQLException e) {
-            System.out.println(e);
+            System.out.print(e);
         }
-        return null;
+        return list;
     }
 }

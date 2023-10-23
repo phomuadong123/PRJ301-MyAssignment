@@ -21,7 +21,7 @@ public class Session {
     private Room room;
     private Attendance attendance;
     private int weekday;
-    
+
     public Session() {
     }
 
@@ -40,8 +40,6 @@ public class Session {
     public void setStatus(boolean status) {
         this.status = status;
     }
-
-   
 
     public Group getGroup() {
         return group;
@@ -98,5 +96,7 @@ public class Session {
     public void setAttendance(Attendance attendance) {
         this.attendance = attendance;
     }
+    
+    
 
 }

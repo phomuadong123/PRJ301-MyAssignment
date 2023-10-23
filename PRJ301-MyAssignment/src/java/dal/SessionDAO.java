@@ -24,23 +24,23 @@ public class SessionDAO extends DBContext {
 
     public ArrayList<Session> getAllSlotInWeek(int istructorId, Date from, Date to) {
         ArrayList<Session> list = new ArrayList<>();
-        String sql = " select * from [Session] s inner join [Group] g on g.groupId=s.[group]\n"
-                + " inner join Course c on c.courseId=g.course inner join Room r on s.room = r.roomId\n"
-                + " inner join TimeSlot ts on ts.slotId=s.slot inner join Instructor i on i.instructorId=s.instructor\n"
-                + " where i.instructorId=? and s.[date] between ? and ?";
+        String sql = "select * from [Session] s inner join [Group] g on g.groupId=s.[group]\n" +
+"              inner join Course c on c.courseId=g.course inner join Room r on s.room = r.roomId\n" +
+"                inner join TimeSlot ts on ts.slotId=s.slot inner join Instructor i on i.instructorId=s.instructor\n" +
+"            where i.instructorId=? and s.[date] < ? and s.[date] > ?";
         
         try {
             PreparedStatement st = connection.prepareCall(sql);
             st.setInt(1, istructorId);
-            st.setDate(2, from);
-            st.setDate(3, to);
+            st.setDate(2, to);
+            st.setDate(3, from);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Session s = new Session();
                 s.setDate(rs.getDate("date"));
                 s.setId(rs.getInt("id"));
                 s.setStatus(rs.getBoolean("status"));
-                
+                s.setWeekday(rs.getInt("weekday"));
                 TimeSlot t = new TimeSlot();
                 t.setSlotId(rs.getInt("slotId"));
                 t.setTimeFrom(rs.getTime("timeFrom"));

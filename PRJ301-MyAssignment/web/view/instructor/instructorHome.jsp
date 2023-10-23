@@ -14,7 +14,7 @@
     <body>
         <h1>Instructor home</h1>
         <h1>Instructor home</h1>
-        <a href="/timetableInstructor">
+        <a href="http://localhost:9999/assignment/timetableInstructor">
             timetableInstructor
         </a>
     </body>
