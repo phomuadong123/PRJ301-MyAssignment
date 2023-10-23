@@ -30,7 +30,7 @@
     </head>
     <body>
         <h1>Timetable for instructor</h1>
-
+        <%@include file="sideBar.jsp" %>
         <table class="table" >
             <thead  class="table-danger">
                 <tr>
