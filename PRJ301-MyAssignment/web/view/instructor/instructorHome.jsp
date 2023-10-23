@@ -39,5 +39,57 @@
         <a href="http://localhost:9999/assignment/timetableInstructor">
             <button type="button" class="btn btn-danger btn-rounded">Timetable For Instructor</button>
         </a>
+         
+           <div class="container" style="margin-top: 100px">
+            <div class="table-wrap">
+                <table class="table table-responsive table-borderless">
+                    <thead>
+                    <th>User ID</th>
+                    <th>&nbsp;</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Seller ID</th>
+                    <th>&nbsp;</th>
+                    <th>Admin ID</th>
+                    </thead>
+                    <tbody>
+                        <c:forEach items="${requestScope.data}" var="i">
+                            <tr class="align-middle alert border-bottom" role="alert">
+                                <td>
+                                    ${i.id}
+                                </td>
+                                <td class="text-center">
+
+                                </td>
+                                <td>
+                                    <div>
+                                        ${i.user}
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="fw-600">$${i.pass}</div>
+                                </td>
+
+                                <td>
+                                    <a class="btn-login"  >
+                                        <button type="button" class="btn btn-info">${i.isSell}</button>
+                                    </a>
+                                </td>
+                                <td></td>
+                                <td>
+
+                                    <a class="btn-login"  >
+                                        <button id="myBtn" type="button" class="btn btn-info">${i.isAdmin}</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </body>
 </html>
