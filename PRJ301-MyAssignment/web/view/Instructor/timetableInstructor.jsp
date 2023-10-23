@@ -74,7 +74,7 @@
             <c:forEach items="${requestScope.slots}" var="slot">
                 <tr>
                     <td style="width: 222px">
-                        Slot ${slot.slotId}<br><span>${slot.timeFrom}-${slot.timeTo} </span>
+                        Slot ${slot.slotId}<br><span class="btn btn-outline-success">${slot.timeFrom}-${slot.timeTo} </span>
                     </td>
                     <c:forEach begin="2" end="8" step="1" varStatus="w">
                         <td>
@@ -82,14 +82,14 @@
                                 <c:set var="week" value="${l.weekday}"/>
                                 <c:if test="${l.slot.slotId eq slot.slotId}">  
                                     <c:if test="${l.weekday eq w.index}">  
-                                        <span style="color: #337ab7;font-weight: bold">${l.group.groupName}-<span class="badge badge-warning ">Awaiting</span></span><br>
-                                        <span style="color: #337ab7;font-weight: bold">${l.group.course.code}</span><br>
+                                        <span style="font-weight: bold">${l.group.groupName}-<a href="https://flm.fpt.edu.vn/"><button type="button"  class="btn  btn-outline-danger  btn-rounded">View Materials</button></a></span><br>
+                                        <span style="font-weight: bold">${l.group.course.code}</span><br>
                                         at ${l.room.rname}<br>
                                         <c:set var="t" value="${l.status}"/>
                                         <span ${t eq null?'style="color: #B99B6B;font-weight: bold"':t eq  'absent' ? 'style="color: red;font-weight: bold"': 'style="color: green;font-weight: bold" '}>(${t eq null ? 'not yet': t eq "absent" ? 'absent' : t})</span> 
                                         <form action="statuss" method="get">
                                             <input type="hidden" name="groupid" value="${l.group.groupId}" >
-                                            <input style="font-weight: bold" class="button-status" type="submit" value="Detail Status" >
+                                            <input class=" btn btn-danger btn-rounded" type="submit" value="Take Addtendance" >
                                         </form>
                                     </c:if>
                                 </c:if> 
