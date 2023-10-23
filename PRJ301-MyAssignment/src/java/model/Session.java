@@ -13,7 +13,7 @@ import java.sql.Date;
 public class Session {
 
     private int id;
-    private String status;
+    private boolean status;
     private Group group;
     private Instructor instructor;
     private Date date;
@@ -33,13 +33,15 @@ public class Session {
         this.id = id;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
+
+   
 
     public Group getGroup() {
         return group;

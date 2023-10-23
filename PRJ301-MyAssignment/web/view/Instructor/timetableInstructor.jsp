@@ -1,6 +1,6 @@
 <%-- 
-    Document   : instructorHome
-    Created on : Oct 17, 2023, 9:13:57 PM
+    Document   : timetableInstructor
+    Created on : Oct 23, 2023, 8:33:00 PM
     Author     : tuant
 --%>
 
@@ -12,10 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Instructor home</h1>
-        <h1>Instructor home</h1>
-        <a href="/timetableInstructor">
-            timetableInstructor
-        </a>
+        <h1>Hello World!</h1>
     </body>
 </html>

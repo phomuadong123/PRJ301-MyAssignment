@@ -71,4 +71,38 @@ public class Instructor {
         this.address = address;
     }
 
+    public String getInstrnumber() {
+        return instrnumber;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
+
+    public ArrayList<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setInstrnumber(String instrnumber) {
+        this.instrnumber = instrnumber;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
+    }
+
+    public void setSessions(ArrayList<Session> sessions) {
+        this.sessions = sessions;
+    }
+    
+    
+
 }
