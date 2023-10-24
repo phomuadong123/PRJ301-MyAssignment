@@ -87,7 +87,7 @@
                                         at ${l.room.rname}<br>
                                         <c:set var="t" value="${l.status}"/>
                                         <span ${t eq null?'style="color: #B99B6B;font-weight: bold"':t eq  'absent' ? 'style="color: red;font-weight: bold"': 'style="color: green;font-weight: bold" '}>(${t eq null ? 'not yet': t eq "absent" ? 'absent' : t})</span> 
-                                        <form action="statuss" method="get">
+                                        <form action="takeAttendance" method="get">
                                             <input type="hidden" name="groupid" value="${l.group.groupId}" >
                                             <input class=" btn btn-danger btn-rounded" type="submit" value="Take Addtendance" >
                                         </form>

@@ -21,10 +21,30 @@ public class Student {
     private String telephone;
     private String email;
     private ArrayList<Group> groups = new ArrayList<>();
-
+    private Group group;
+    
     public Student() {
     }
 
+    public void setGroup(Group group) {
+        this.group = group;
+    }
+
+    public Group getGroup() {
+        return group;
+    }
+    
+    
+
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
+
+    public void setGroups(ArrayList<Group> groups) {
+        this.groups = groups;
+    }
+
+    
     public int getStudentid() {
         return studentid;
     }
@@ -56,8 +76,6 @@ public class Student {
     public String getEmail() {
         return email;
     }
-
-   
 
     public void setStudentid(int studentid) {
         this.studentid = studentid;

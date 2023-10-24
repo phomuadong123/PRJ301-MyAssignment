@@ -35,17 +35,18 @@
                                             <p class="mb-4" style="font-weight: 700; font-size: 18px">Please login to your account</p>
 
                                             <div class="form-outline mb-4">
-                                                <label class="form-label" style="font-weight: 700" for="form2Example11">Username</label>
+                                                <label class="form-label"  for="form2Example11">Username</label>
                                                 <input name="username" id="form2Example11" type="text"   class="form-control"
                                                        placeholder="Username" />
 
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <label class="form-label" style="font-weight: 700" for="form2Example22">Password</label>
+                                                <label class="form-label"  for="form2Example22">Password</label>
                                                 <input name="password" type="password" id="form2Example22" class="form-control" placeholder="Password"/>
-
+                                                <input class="mt-4" type="checkbox" name="check"/> Remember me 
                                             </div>
+                                            
 
                                             <div class="text-center pt-1 mb-5 pb-1">
                                                 <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log

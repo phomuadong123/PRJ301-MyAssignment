@@ -81,14 +81,8 @@ public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControl
             SessionDAO sessionDAO = new SessionDAO();
             user = (User) request.getSession().getAttribute("user");
             ArrayList<Session> l = sessionDAO.getAllSlotInWeek(user.getInstructorId(), Date.valueOf(dateFrom), Date.valueOf(dateTo));
-            if (l == null) {
-
-            } else {
-                request.setAttribute("schedule", l);
-            }
-            System.out.println(Date.valueOf(dateFrom));
-            System.out.println(Date.valueOf(dateTo));
-            System.out.println(user.getInstructorId());
+            request.setAttribute("schedule", l);
+            
         } else {
             int currentw = getCurrentWeek();
             ArrayList<String> date = getEachDayByWeekIndb(currentw, currentYear);
@@ -97,16 +91,9 @@ public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControl
             SessionDAO sessionDAO = new SessionDAO();
             user = (User) request.getSession().getAttribute("user");
             ArrayList<Session> l = sessionDAO.getAllSlotInWeek(user.getInstructorId(), Date.valueOf(dateFrom), Date.valueOf(dateTo));
-            
-            if (l == null) {
-;
-            } else {
-                request.setAttribute("schedule", l);
-            }
-            System.out.println(Date.valueOf(dateFrom));
-            System.out.println(Date.valueOf(dateTo));
-            System.out.println(user.getInstructorId());
+            request.setAttribute("schedule", l);
 
+            
         }
 
         request.getRequestDispatcher("view/Instructor/timetableInstructor.jsp").forward(request, response);
