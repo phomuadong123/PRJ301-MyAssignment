@@ -2,7 +2,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-
 package controller.instructor;
 
 import controller.authentication.BaseRequiredAuthenticatedControllerForInstructor;
@@ -28,30 +27,30 @@ import model.User;
  *
  * @author tuant
  */
-@WebServlet(name="TakeAttendanceServlet", urlPatterns={"/takeAttendance"})
+@WebServlet(name = "TakeAttendanceServlet", urlPatterns = {"/takeAttendance"})
 public class TakeAttendanceServlet extends BaseRequiredAuthenticatedControllerForInstructor {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
-       String raw_groupid = request.getParameter("groupid");
+        String raw_instructor = request.getParameter("instructor");
+        String raw_groupid = request.getParameter("groupid");
+        String raw_slot = request.getParameter("slot");
+        String raw_sessionid = request.getParameter("sessionid");
         try {
             int groupid = Integer.parseInt(raw_groupid);
+            int instructor = Integer.parseInt(raw_instructor);
+            int slot = Integer.parseInt(raw_slot);
+            int lectureid = Integer.parseInt(raw_sessionid);
             
-            SessionDAO ss = new SessionDAO();
-            ArrayList<Session> all = ss.getAllByGroupId(groupid);
-            request.setAttribute("listSession", all);
+            SessionDAO s = new SessionDAO();
             
-            StudentDAO l = new StudentDAO();
-             ArrayList<Student> student = l.studentByGroupID(groupid);
-            request.setAttribute("list", student);
-            
-            AttendanceDAO status = new AttendanceDAO();
-            ArrayList<Attendance> attend = status.statusStudents(groupid);
-            request.setAttribute("listStudent", attend);
+            AttendanceDAO t = new AttendanceDAO();
+            ArrayList<Attendance> list = t.getAllStudentsBySession(s.getDateByGroupId(groupid), groupid, instructor, slot, lectureid);
+            System.out.println(s.getDateByGroupId(groupid));
+            request.setAttribute("list", list);
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
-        
         request.getRequestDispatcher("view/Instructor/takeAttendance.jsp").forward(request, response);
     }
 
@@ -59,6 +58,5 @@ public class TakeAttendanceServlet extends BaseRequiredAuthenticatedControllerFo
     protected void doPost(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-   
-  
+
 }

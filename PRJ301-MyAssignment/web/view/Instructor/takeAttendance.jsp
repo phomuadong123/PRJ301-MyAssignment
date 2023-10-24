@@ -11,55 +11,65 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <style>
+            table, td, th {
+                border: 1px solid;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+
+            body{
+                margin: auto;
+                width: 70%
+            }
+        </style>
     </head>
     <body>
         <h1>Hello </h1>
-        
-        <table>
-                <thead>
-                    <tr>
-                        <th rowspan="2">NO</th>
-                        <th rowspan="2">GROUP</th>
-                        <th rowspan="2">ROLLNUMBER</th>
-                        <th rowspan="2">STUDENT NAME</th>
-                        <th colspan="20">SLOT   
-                        <th rowspan="2">SUMMARY</th>
-                        <th rowspan="2">PERCENT ABSENT</th>
-                    </tr>
-                    <tr>
-                        <c:forEach items="${requestScope.listSession}" var="session">
-                          <c:set var="date" value="${session.date}"/> 
-                          <fmt:formatDate var="dayMonth" value="${date}" pattern="dd-MM" />
-                            <th>${dayMonth}</th>
-                        </c:forEach>
-                    </tr>
+        <form action="add"  method="post">
+            <table class="table">
+                <thead class="table-danger">
+                <th>NO</th>
+                <th>Group</th>
+                <th>Rollnumber</th>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Absent</th>
+                <th>Present</th>
+                <th>Comment</th>
+                <th>RecordTime</th>
                 </thead>
                 <tbody>
-                    <c:forEach items="${requestScope.list}" var="l" varStatus="loop">
-
-                        <tr>
-                            <td>${loop.index + 1}</td>
-                            <td>${l.group.groupName}</td>
-                            <td class="roll">${l.rollnumber}</td>
-                            <td>${l.fullName}</td>
-
-                            <c:set var="p" value="0"/>
-                            <c:forEach items="${listStudent}" var="ls">
-                                <c:if test="${l.studentid == ls.student.studentid}">
-                                    <td> <c:set var="t" value="${ls.status}"/>
-                                        <span ${t eq  "absent" ? 'style="color: red"': t eq  "attended" ? 'style="color: green"': 'style="color: black"'}> ${ls.status eq null ? '-': ls.status eq "attended" ? 'P' : ls.status eq "absent" ? 'A':''}</span></td>
-                                        <c:if test="${ls.status eq 'absent'}">
-                                            <c:set var="p" value="${p+1}"/>
-                                        </c:if>
-                                    </c:if>
-                                </c:forEach>
-                                    <c:set var="size" value="${requestScope.listSession.size()}"/>
-                                <fmt:formatNumber var="aa" value="${p/size*100}" pattern="##"/>
-                            <td>${p}/${size}</td>      
-                            <td ${aa >= 10 ? 'style="color:red"':''} >${aa}%</td>
-                        </tr>
-                    </c:forEach>
+                    <c:forEach items="${requestScope.list}" var="l" varStatus="loop">                    
+                        <input type="hidden" name="studentid_${l.student.studentid}" value="${l.student.studentid}">
+                        <input type="hidden" name="slot" value="${l.session.slot.slotId}">
+                        <input type="hidden" name="sessionid" value="${l.session.id}">
+                        <input type="hidden" name="index" value="${loop.index+1}">
+                        <input type="hidden" name="groupid" value="${l.session.group.groupId}">
+                        <input type="hidden" name="sid" value="${l.student.studentid}"/>
+                    <tr>
+                        <td>${loop.index+1}</td>
+                        <td>${l.session.group.groupName}</td>
+                        <td>${l.student.rollnumber}</td>
+                        <td>${l.student.fullName}</td>
+                        <td style="height:162px"><img style="width: 100%; height: 100%;" src="" alt=""></td>
+                        <td><input type="radio" name="status_${l.student.studentid}" checked value="absent">absent</td>
+                        <td><input type="radio" name="status_${l.student.studentid}" value="present">present</td>
+                        <td><input style="height: 30px; width: 100%" placeholder="comment" type="text" name="comment_${l.student.studentid}"></td>
+                        <td style="width:40rem">${l.recordTime}</td>
+                    </tr>
+                </c:forEach>
                 </tbody>
             </table>
+            <input type="hidden" name="sess" value="${param.sessionid}"/>
+            <div class="buttonss">
+                <input class="btn btn-danger " type="submit"  value="Add">
+            </div>
+        </form>
+
     </body>
 </html>

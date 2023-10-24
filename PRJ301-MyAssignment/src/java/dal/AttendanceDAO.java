@@ -56,7 +56,7 @@ public class AttendanceDAO extends DBContext {
                 ss.setGroup(g);
 
                 TimeSlot t = new TimeSlot();
-                t.setSlotId(rs.getInt("slotId"));
+                t.setSlotId(rs.getInt("slot"));
                 ss.setSlot(t);
 
                 a.setSession(ss);

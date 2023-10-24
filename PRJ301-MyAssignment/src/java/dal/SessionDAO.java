@@ -87,29 +87,82 @@ public class SessionDAO extends DBContext {
 
     }
 
-   
-    
-    public ArrayList<Session> getAllByGroupId(int groupid) {
-        ArrayList<Session> session = new ArrayList<>();
+    public Date getDateByGroupId(int groupid) {
+        
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT * from Session where GroupID = ?";
+            String sql = "SELECT date from Session where [group] = ?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, groupid);
             rs = stm.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
 
-                Session s = new Session();
+               Session s = new Session();
                 s.setDate(rs.getDate("date"));
-                session.add(s);
+               return s.getDate();
             }
         } catch (SQLException ex) {
-            
-        } 
-        return session;
+            System.out.println(ex);
+        }
+            return null;
     }
 
-   
+    public ArrayList<Session> getAllGroup(Date date, int instructorId) {
+        ArrayList<Session> list = new ArrayList<>();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from Session s inner join Instructor i on s.instructor=i.instructorId\n"
+                    + "  inner join [Group] g on g.groupId=s.[group] inner join TimeSlot ts on s.slot=ts.slotId\n"
+                    + "  inner join Course c on c.courseId=g.course join Room r on r.roomId=s.room\n"
+                    + "  where s.date = ? and i.instructorId=?";
+            stm = connection.prepareStatement(sql);
+            stm.setDate(1, date);
+            stm.setInt(2, instructorId);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Session s = new Session();
+                s.setDate(rs.getDate("date"));
+                s.setId(rs.getInt("id"));
+                s.setStatus(rs.getBoolean("status"));
+                
+                TimeSlot t = new TimeSlot();
+                t.setSlotId(rs.getInt("slotId"));
+                t.setTimeFrom(rs.getTime("timeFrom"));
+                t.setTimeTo(rs.getTime("timeTo"));
+                s.setSlot(t);
+
+                Group g = new Group();
+                g.setGroupId(rs.getInt("groupId"));
+                g.setGroupName(rs.getString("groupName"));
+
+                Instructor i = new Instructor();
+                i.setInstructorId(rs.getInt("instructorId"));
+                i.setFullName(rs.getString("fullName"));              
+                i.setEmail(rs.getString("email"));
+                i.setDob(rs.getDate("dob"));
+                i.setAddress(rs.getString("address"));
+                i.setTelephone(rs.getString("Telephone"));
+
+                Course c = new Course();
+                c.setCode(rs.getString("code"));
+                c.setName(rs.getString("name"));
+                c.setCourseId(rs.getInt("courseId"));
+                g.setCourse(c);
+                s.setGroup(g);
+
+                Room r = new Room();
+                r.setRoomId(rs.getInt("roomId"));
+                r.setRname(rs.getString("rname"));
+                s.setRoom(r);
+
+                list.add(s);
+            }
+        } catch (SQLException ex) {
+
+        }
+        return list;
+    }
 
 }

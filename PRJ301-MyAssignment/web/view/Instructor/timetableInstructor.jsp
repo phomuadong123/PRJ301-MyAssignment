@@ -86,9 +86,12 @@
                                         <span style="font-weight: bold">${l.group.course.code}</span><br>
                                         at ${l.room.rname}<br>
                                         <c:set var="t" value="${l.status}"/>
-                                        <span ${t eq null?'style="color: #B99B6B;font-weight: bold"':t eq  'absent' ? 'style="color: red;font-weight: bold"': 'style="color: green;font-weight: bold" '}>(${t eq null ? 'not yet': t eq "absent" ? 'absent' : t})</span> 
+                                        <span ${t eq null?'font-weight: bold"':t eq  '' ? 'style="color: red;font-weight: bold"': 'style="color: green;font-weight: bold" '}>(${t eq null ? 'not yet': t eq '' ? 'not yet' : 'attended'})</span> 
                                         <form action="takeAttendance" method="get">
+                                            <input type="hidden" name="instructor" value="${l.instructor.instructorId}" >
                                             <input type="hidden" name="groupid" value="${l.group.groupId}" >
+                                            <input type="hidden" name="slot" value="${l.slot.slotId}" >
+                                            <input type="hidden" name="sessionid" value="${l.id}" >
                                             <input class=" btn btn-danger btn-rounded" type="submit" value="Take Addtendance" >
                                         </form>
                                     </c:if>
