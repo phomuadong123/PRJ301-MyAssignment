@@ -13,27 +13,46 @@
         
     </head>
     <body>
+         <div class="row mt-2">
+            <div class="col-md-8">
+                <h1><span>FPT University Academic Portal</span>
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <table>
+                    <tbody><tr>
+                            <td colspan="2" class="auto-style1"><strong>FAP mobile app (myFAP) is ready at</strong></td>
+                        </tr>
+                        <tr>
+                            <td><a href="https://apps.apple.com/app/id1527723314">
+                                    <img src="https://fap.fpt.edu.vn/images/app-store.png" style="width: 120px; height: 40px" alt="apple store"></a></td>
+                            <td><a href="https://play.google.com/store/apps/details?id=com.fuct">
+                                    <img src="https://fap.fpt.edu.vn/images/play-store.png" style="width: 120px; height: 40px" alt="google store"></a></td>
+                        </tr>
+                    </tbody></table>
+            </div>
+        </div>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 mt-4 ">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 mt-4">
             <!-- Container wrapper -->
-            <div class="container">
+            <div class="container  " >
                 <div class="collapse navbar-collapse" id="navbarButtonsExample">
                     <!-- Left links -->
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <div class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="btn btn-outline-success" href="http://localhost:9999/assignment/instructor">Home</a>
                         </li>
-                    </ul>
+                    </div>
                     <!-- Left links -->
 
                     <div class="d-flex align-items-center">
-                        <button type="button" class="btn btn-danger  btn-rounded me-3">
+                        <button type="button" class="btn btn-success  btn-rounded me-3">
                             ${sessionScope.user.username}
                         </button>
-                        <a href="logout"><button type="button" class="btn btn-danger  btn-rounded me-3">
+                        <a href="logout"><button type="button" class="btn btn-success  btn-rounded me-3">
                             Log out
                         </button></a>
-                        <button type="button" class="btn btn-danger  btn-rounded me-3">
+                        <button type="button" class="btn btn-success  btn-rounded me-3">
                              CAMPUS: FPTU-Hòa Lạc
                         </button>
                     </div>

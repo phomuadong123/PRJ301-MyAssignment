@@ -12,27 +12,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <style>
-            table, td, th {
-                border: 1px solid;
-            }
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            body{
-                margin: auto;
-                width: 70%
-            }
-        </style>
+       
     </head>
-    <body>
-        <h1>Timetable for instructor</h1>
+    <body style=" margin: auto;width: 70%">
+        
         <%@include file="sideBar.jsp" %>
-        <table class="table" >
-            <thead  class="table-danger">
+        <table class="table table-bordered border-dark" >
+            <thead  class="table-danger table-bordered border-dark">
                 <tr>
                     <th>
                         <form action="timetableInstructor" method="get" id="formSubmit">

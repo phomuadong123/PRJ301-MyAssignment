@@ -12,27 +12,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <style>
-            table, td, th {
-                border: 1px solid;
-            }
-
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
-
-            body{
-                margin: auto;
-                width: 70%
-            }
-        </style>
+        
     </head>
-    <body>
-        <h1>Hello </h1>
+    <body style=" margin: auto;width: 70%">
+        <%@include file="sideBar.jsp" %>
         <form action="add"  method="post">
-            <table class="table">
-                <thead class="table-danger">
+            <table class="table table-bordered border-dark">
+                <thead class="table-danger table-bordered border-dark" >
                 <th>NO</th>
                 <th>Group</th>
                 <th>Rollnumber</th>
@@ -58,17 +44,17 @@
                         <td>${l.student.fullName}</td>
                         <td style="height:162px"><img style="width: 100%; height: 100%;" src="" alt=""></td>
                         <td><input type="radio"
-                               <c:if test="${l.status eq true}">
+                               <c:if test="${l.status eq false}">
                                    checked="checked"
                                </c:if>
                                name="status${l.student.studentid}" value="absent"/>absent
                         <input type="radio"
-                               <c:if test="${l.status eq false}">
+                               <c:if test="${l.status eq true}">
                                    checked="checked"
                                </c:if>
                                name="status${l.student.studentid}" value="present"/>present</td>
-                        <td><input style="height: 30px; width: 100%" placeholder="${l.comment}" type="text" name="comment${l.student.studentid}"></td>
-                        <td style="width:60px">${l.recordTime}</td>
+                        <td><input style="height: 50px; width: 100%; " placeholder="${l.comment}" type="text" name="comment${l.student.studentid}"></td>
+                        <td style="width:50px">${l.recordTime} </td>
                     </tr>
                 </c:forEach>
                 </tbody>

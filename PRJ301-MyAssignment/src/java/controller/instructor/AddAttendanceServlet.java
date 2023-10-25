@@ -49,7 +49,7 @@ public class AddAttendanceServlet extends BaseRequiredAuthenticatedControllerFor
             a.setComment(request.getParameter("comment"+stuid));
             a.setStatus(request.getParameter("status"+stuid).equals("present"));
             atts.add(a);
-            System.out.println(a.isStatus());
+          
         }
         ses.setAttendance(atts);
         AttendanceDAO sesDB = new AttendanceDAO();

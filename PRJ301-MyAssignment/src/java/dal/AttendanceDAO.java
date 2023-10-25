@@ -25,7 +25,7 @@ public class AttendanceDAO extends DBContext {
 
     public ArrayList<Attendance> getAllStudentsBySession(Date date, int groupid, int instructorid, int slot, int sessionid) {
         ArrayList<Attendance> list = new ArrayList<>();
-        String sql = "  select * from Student s left join Student_Group sg on s.studentid=sg.studentid\n"
+        String sql = "  select a.status, * from Student s left join Student_Group sg on s.studentid=sg.studentid\n"
                 + "  left join [Group] g on g.groupId=sg.groupid left join Course c on c.courseId=g.groupId\n"
                 + "  left join [Session] ses on ses.[group] = g.groupId left join Attendance a on a.[session]=ses.id\n"
                 + "  and a.student=s.studentid left join Instructor i on i.instructorId=ses.instructor\n"
@@ -52,6 +52,7 @@ public class AttendanceDAO extends DBContext {
 
                 Session ss = new Session();
                 ss.setId(rs.getInt("id"));
+                
 
                 Group g = new Group();
                 g.setGroupId(rs.getInt("groupId"));
