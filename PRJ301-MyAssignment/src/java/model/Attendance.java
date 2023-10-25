@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 /**
@@ -14,8 +15,8 @@ public class Attendance {
 
     private Student student;
     private Session session;
-    private String  status;
-    private Timestamp recordTime;
+    private boolean status;
+    private Date recordTime;
     private String comment;
 
     public Attendance() {
@@ -37,20 +38,23 @@ public class Attendance {
         this.session = session;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
-    public Timestamp getRecordTime() {
+
+   
+    public Date getRecordTime() {
         return recordTime;
     }
 
-    public void setRecordTime(Timestamp recordTime) {
+    public void setRecordTime(Date recordTime) {
         this.recordTime = recordTime;
     }
+   
 
     public String getComment() {
         return comment;

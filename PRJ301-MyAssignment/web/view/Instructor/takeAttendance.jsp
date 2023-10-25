@@ -39,28 +39,36 @@
                 <th>Name</th>
                 <th>Image</th>
                 <th>Absent</th>
-                <th>Present</th>
                 <th>Comment</th>
                 <th>RecordTime</th>
                 </thead>
                 <tbody>
                     <c:forEach items="${requestScope.list}" var="l" varStatus="loop">                    
-                        <input type="hidden" name="studentid_${l.student.studentid}" value="${l.student.studentid}">
+                        <input type="hidden" name="studentid" value="${l.student.studentid}">
                         <input type="hidden" name="slot" value="${l.session.slot.slotId}">
                         <input type="hidden" name="sessionid" value="${l.session.id}">
                         <input type="hidden" name="index" value="${loop.index+1}">
                         <input type="hidden" name="groupid" value="${l.session.group.groupId}">
                         <input type="hidden" name="sid" value="${l.student.studentid}"/>
+                        
                     <tr>
                         <td>${loop.index+1}</td>
                         <td>${l.session.group.groupName}</td>
                         <td>${l.student.rollnumber}</td>
                         <td>${l.student.fullName}</td>
                         <td style="height:162px"><img style="width: 100%; height: 100%;" src="" alt=""></td>
-                        <td><input type="radio" name="status_${l.student.studentid}" checked value="absent">absent</td>
-                        <td><input type="radio" name="status_${l.student.studentid}" value="present">present</td>
-                        <td><input style="height: 30px; width: 100%" placeholder="comment" type="text" name="comment_${l.student.studentid}"></td>
-                        <td style="width:40rem">${l.recordTime}</td>
+                        <td><input type="radio"
+                               <c:if test="${l.status eq true}">
+                                   checked="checked"
+                               </c:if>
+                               name="status${l.student.studentid}" value="absent"/>absent
+                        <input type="radio"
+                               <c:if test="${l.status eq false}">
+                                   checked="checked"
+                               </c:if>
+                               name="status${l.student.studentid}" value="present"/>present</td>
+                        <td><input style="height: 30px; width: 100%" placeholder="${l.comment}" type="text" name="comment${l.student.studentid}"></td>
+                        <td style="width:60px">${l.recordTime}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

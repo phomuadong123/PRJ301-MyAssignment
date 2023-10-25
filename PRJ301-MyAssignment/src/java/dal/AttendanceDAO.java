@@ -41,6 +41,9 @@ public class AttendanceDAO extends DBContext {
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Attendance a = new Attendance();
+                a.setComment(rs.getString("comment"));
+                a.setStatus(rs.getBoolean("status"));
+                a.setRecordTime(rs.getDate("recordTime"));
                 Student s = new Student();
                 s.setStudentid(rs.getInt("studentid"));
                 s.setFullName(rs.getString("fullName"));
@@ -84,7 +87,7 @@ public class AttendanceDAO extends DBContext {
             rs = stm.executeQuery();
             while (rs.next()) {
                 Attendance a = new Attendance();
-                a.setStatus(rs.getString("status"));
+                a.setStatus(rs.getBoolean("status"));
 
                 Session s = new Session();
                 s.setId(rs.getInt("id"));
@@ -108,5 +111,44 @@ public class AttendanceDAO extends DBContext {
             System.out.println(ex);
         }
         return attendance;
+    }
+    
+    public void addAttendances(Session session) {
+        try {
+            connection.setAutoCommit(false);
+            String sql_update_isAtt = "UPDATE [Session] SET [status] = 1 WHERE id =?";
+            PreparedStatement stm_update_isAtt = connection.prepareStatement(sql_update_isAtt);
+            stm_update_isAtt.setInt(1, session.getId());
+            stm_update_isAtt.executeUpdate();
+
+            String sql_remove_atts = "DELETE Attendance WHERE session =?";
+            PreparedStatement stm_remove_atts = connection.prepareStatement(sql_remove_atts);
+            stm_remove_atts.setInt(1, session.getId());
+            stm_remove_atts.executeUpdate();
+
+            for (Attendance att : session.getAttendance()) {
+                String sql_insert_att = "INSERT INTO [Attendance]\n"
+                        + "           ([session]\n"
+                        + "           ,[student]\n"
+                        + "           ,[status]\n"
+                        + "           ,[comment]\n"
+                        + "           ,[recordTime])\n"
+                        + "     VALUES\n"
+                        + "           (?\n"
+                        + "           ,?\n"
+                        + "           ,?\n"
+                        + "           ,?\n"
+                        + "           ,GETDATE())";
+                PreparedStatement stm_insert_att = connection.prepareStatement(sql_insert_att);
+                stm_insert_att.setInt(1, session.getId());
+                stm_insert_att.setInt(2, att.getStudent().getStudentid());
+                stm_insert_att.setBoolean(3, att.isStatus());
+                stm_insert_att.setString(4, att.getComment());
+                stm_insert_att.executeUpdate();
+            }
+            connection.commit();
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        } 
     }
 }
