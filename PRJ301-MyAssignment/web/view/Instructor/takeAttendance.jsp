@@ -42,7 +42,7 @@
                         <td>${l.session.group.groupName}</td>
                         <td>${l.student.rollnumber}</td>
                         <td>${l.student.fullName}</td>
-                        <td style="height:162px"><img style="width: 100%; height: 100%;" src="" alt=""></td>
+                        <td style="height:150px"><img style="width: 100%; height: 100%; background-size: cover" src="https://mdbootstrap.com/img/new/avatars/${requestScope.randomNumber}.jpg" ></td>
                         <td><input type="radio"
                                <c:if test="${l.status eq false}">
                                    checked="checked"

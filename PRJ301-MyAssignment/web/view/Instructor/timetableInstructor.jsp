@@ -17,6 +17,8 @@
     <body style=" margin: auto;width: 70%">
         
         <%@include file="sideBar.jsp" %>
+        
+        
         <table class="table table-bordered border-dark" >
             <thead  class="table-danger table-bordered border-dark">
                 <tr>

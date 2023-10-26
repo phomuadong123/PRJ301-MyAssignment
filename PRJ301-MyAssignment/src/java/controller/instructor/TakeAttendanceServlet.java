@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Random;
 import model.Attendance;
 import model.Session;
 import model.Student;
@@ -41,13 +42,17 @@ public class TakeAttendanceServlet extends BaseRequiredAuthenticatedControllerFo
             int instructor = Integer.parseInt(raw_instructor);
             int slot = Integer.parseInt(raw_slot);
             int lectureid = Integer.parseInt(raw_sessionid);
-            
+
             SessionDAO s = new SessionDAO();
-            
+
             AttendanceDAO t = new AttendanceDAO();
             ArrayList<Attendance> list = t.getAllStudentsBySession(s.getDateByGroupId(groupid), groupid, instructor, slot, lectureid);
             System.out.println(s.getDateByGroupId(groupid));
             request.setAttribute("list", list);
+
+            Random random = new Random();
+            int randomNumber = random.nextInt(21);
+            request.setAttribute("randomNumber", randomNumber);
         } catch (NumberFormatException e) {
             System.out.println(e);
         }
