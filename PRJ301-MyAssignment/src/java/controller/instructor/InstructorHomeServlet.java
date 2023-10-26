@@ -22,7 +22,7 @@ public class InstructorHomeServlet extends BaseRequiredAuthenticatedControllerFo
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
-        request.getRequestDispatcher("view/Instructor/instructorHome.jsp").forward(request, response);
+        request.getRequestDispatcher("view/Instructor/homeInstructor.jsp").forward(request, response);
     }
 
     @Override

@@ -13,23 +13,24 @@
         
     </head>
     <body>
-         <div class="row mt-2">
-            <div class="col-md-8">
-                <h1><span>FPT University Academic Portal</span>
+         <div class="row mt-3">
+            <div class="col-md-8 mt-2">
+                <h1 style="margin-left: 20px">FPT University Academic Portal
                 </h1>
             </div>
-            <div class="col-md-4">
+             <div class="col-md-4" style="padding-left: 100px">
                 <table>
                     <tbody><tr>
                             <td colspan="2" class="auto-style1"><strong>FAP mobile app (myFAP) is ready at</strong></td>
                         </tr>
                         <tr>
                             <td><a href="https://apps.apple.com/app/id1527723314">
-                                    <img src="https://fap.fpt.edu.vn/images/app-store.png" style="width: 120px; height: 40px" alt="apple store"></a></td>
+                                    <img src="https://fap.fpt.edu.vn/images/app-store.png" style="width: 130px; height: 40px" alt="apple store"></a></td>
                             <td><a href="https://play.google.com/store/apps/details?id=com.fuct">
-                                    <img src="https://fap.fpt.edu.vn/images/play-store.png" style="width: 120px; height: 40px" alt="google store"></a></td>
+                                    <img src="https://fap.fpt.edu.vn/images/play-store.png" style="width: 130px; height: 40px" alt="google store"></a></td>
                         </tr>
-                    </tbody></table>
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- Navbar -->
