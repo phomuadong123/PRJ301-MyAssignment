@@ -88,7 +88,7 @@ public class SessionDAO extends DBContext {
     }
 
     public Date getDateByGroupId(int groupid) {
-        
+
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
@@ -98,14 +98,14 @@ public class SessionDAO extends DBContext {
             rs = stm.executeQuery();
             if (rs.next()) {
 
-               Session s = new Session();
+                Session s = new Session();
                 s.setDate(rs.getDate("date"));
-               return s.getDate();
+                return s.getDate();
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
-            return null;
+        return null;
     }
 
     public ArrayList<Session> getAllGroup(Date date, int instructorId) {
@@ -126,7 +126,7 @@ public class SessionDAO extends DBContext {
                 s.setDate(rs.getDate("date"));
                 s.setId(rs.getInt("id"));
                 s.setStatus(rs.getBoolean("status"));
-                
+
                 TimeSlot t = new TimeSlot();
                 t.setSlotId(rs.getInt("slotId"));
                 t.setTimeFrom(rs.getTime("timeFrom"));
@@ -139,7 +139,7 @@ public class SessionDAO extends DBContext {
 
                 Instructor i = new Instructor();
                 i.setInstructorId(rs.getInt("instructorId"));
-                i.setFullName(rs.getString("fullName"));              
+                i.setFullName(rs.getString("fullName"));
                 i.setEmail(rs.getString("email"));
                 i.setDob(rs.getDate("dob"));
                 i.setAddress(rs.getString("address"));
@@ -165,4 +165,60 @@ public class SessionDAO extends DBContext {
         return list;
     }
 
+    public Session getBySessionId(int sid) {
+
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from Session s inner join Instructor i on s.instructor=i.instructorId\n"
+                    + "  inner join [Group] g on g.groupId=s.[group] inner join TimeSlot ts on s.slot=ts.slotId\n"
+                    + "  inner join Course c on c.courseId=g.course join Room r on r.roomId=s.room\n"
+                    + "  where s.id=? ";
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, sid);
+            rs = stm.executeQuery();
+            if (rs.next()) {
+
+                 Session s = new Session();
+                s.setDate(rs.getDate("date"));
+                s.setId(rs.getInt("id"));
+                s.setStatus(rs.getBoolean("status"));
+
+                TimeSlot t = new TimeSlot();
+                t.setSlotId(rs.getInt("slotId"));
+                t.setTimeFrom(rs.getTime("timeFrom"));
+                t.setTimeTo(rs.getTime("timeTo"));
+                s.setSlot(t);
+
+                Group g = new Group();
+                g.setGroupId(rs.getInt("groupId"));
+                g.setGroupName(rs.getString("groupName"));
+
+                Instructor i = new Instructor();
+                i.setInstructorId(rs.getInt("instructorId"));
+                i.setFullName(rs.getString("fullName"));
+                i.setEmail(rs.getString("email"));
+                i.setDob(rs.getDate("dob"));
+                i.setAddress(rs.getString("address"));
+                i.setTelephone(rs.getString("Telephone"));
+                s.setInstructor(i);
+
+                Course c = new Course();
+                c.setCode(rs.getString("code"));
+                c.setName(rs.getString("name"));
+                c.setCourseId(rs.getInt("courseId"));
+                g.setCourse(c);
+                s.setGroup(g);
+
+                Room r = new Room();
+                r.setRoomId(rs.getInt("roomId"));
+                r.setRname(rs.getString("rname"));
+                s.setRoom(r);
+                return s;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
+    }
 }

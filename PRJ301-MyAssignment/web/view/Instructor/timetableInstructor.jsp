@@ -75,7 +75,7 @@
                                         at ${l.room.rname}<br>
                                         <c:set var="t" value="${l.status}"/>
                                         <span ${t eq null?'font-weight: bold"':t eq  '' ? 'style="color: red;font-weight: bold"': 'style="color: green;font-weight: bold" '}>(${t eq null ? 'not yet': t eq '' ? 'not yet' : 'attended'})</span> 
-                                        <form action="takeAttendance" method="get">
+                                        <form action="takeAttendance" method="post">
                                             <input type="hidden" name="instructor" value="${l.instructor.instructorId}" >
                                             <input type="hidden" name="groupid" value="${l.group.groupId}" >
                                             <input type="hidden" name="slot" value="${l.slot.slotId}" >

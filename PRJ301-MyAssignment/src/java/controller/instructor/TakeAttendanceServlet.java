@@ -33,6 +33,11 @@ public class TakeAttendanceServlet extends BaseRequiredAuthenticatedControllerFo
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
+        
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
         String raw_instructor = request.getParameter("instructor");
         String raw_groupid = request.getParameter("groupid");
         String raw_slot = request.getParameter("slot");
@@ -42,12 +47,13 @@ public class TakeAttendanceServlet extends BaseRequiredAuthenticatedControllerFo
             int instructor = Integer.parseInt(raw_instructor);
             int slot = Integer.parseInt(raw_slot);
             int lectureid = Integer.parseInt(raw_sessionid);
-
+           
             SessionDAO s = new SessionDAO();
-
+            Session session = s.getBySessionId(lectureid);
+            request.setAttribute("ses", session);
+            
             AttendanceDAO t = new AttendanceDAO();
-            ArrayList<Attendance> list = t.getAllStudentsBySession(s.getDateByGroupId(groupid), groupid, instructor, slot, lectureid);
-            System.out.println(s.getDateByGroupId(groupid));
+            ArrayList<Attendance> list = t.getAllStudentsBySession(s.getDateByGroupId(groupid), groupid, instructor, slot, lectureid);           
             request.setAttribute("list", list);
 
             Random random = new Random();
@@ -57,11 +63,6 @@ public class TakeAttendanceServlet extends BaseRequiredAuthenticatedControllerFo
             System.out.println(e);
         }
         request.getRequestDispatcher("view/Instructor/takeAttendance.jsp").forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

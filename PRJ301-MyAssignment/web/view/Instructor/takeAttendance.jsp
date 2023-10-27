@@ -16,6 +16,12 @@
     </head>
     <body style=" margin: auto;width: 70%">
         <%@include file="sideBar.jsp" %>
+        
+        <h2>Singly activity Attendance</h2><br/>
+        <p>Attendance for <b>${requestScope.ses.group.groupName}</b> with lecture <b>${requestScope.ses.instructor.fullName}</b> at slot 
+            <b>${requestScope.ses.slot.slotId}</b> on <b>${requestScope.ses.date}</b> in room <b>${requestScope.ses.room.roomId}</b> at FU-HL
+        </p>
+        
         <form action="add"  method="post">
             <table class="table table-bordered border-dark">
                 <thead class="table-danger table-bordered border-dark" >
