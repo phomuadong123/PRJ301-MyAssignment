@@ -89,12 +89,12 @@ public class AttendanceDAO extends DBContext {
             while (rs.next()) {
                 Attendance a = new Attendance();
                 a.setStatus(rs.getBoolean("status"));
-
+                
                 Session s = new Session();
                 s.setId(rs.getInt("id"));
 
                 TimeSlot t = new TimeSlot();
-                t.setSlotId(rs.getInt("slotId"));
+                t.setSlotId(rs.getInt("slot"));
                 s.setSlot(t);
 
                 Group g = new Group();

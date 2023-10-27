@@ -15,7 +15,7 @@
 
     </head>
     <body style=" margin: auto;width: 70%">
-        <%@include file="sideBar.jsp" %>
+        <%@include file="header.jsp" %>
         
         <h2>Singly activity Attendance</h2><br/>
         <p>Attendance for <b>${requestScope.ses.group.groupName}</b> with lecture <b>${requestScope.ses.instructor.fullName}</b> at slot 

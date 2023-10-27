@@ -20,7 +20,7 @@ public class Student {
     private String address;
     private String telephone;
     private String email;
-    private ArrayList<Group> groups = new ArrayList<>();
+
     private Group group;
     
     public Student() {
@@ -36,13 +36,7 @@ public class Student {
     
     
 
-    public ArrayList<Group> getGroups() {
-        return groups;
-    }
-
-    public void setGroups(ArrayList<Group> groups) {
-        this.groups = groups;
-    }
+  
 
     
     public int getStudentid() {

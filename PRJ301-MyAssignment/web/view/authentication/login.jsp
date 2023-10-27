@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,21 +31,21 @@
                                             <img class="mb-4" src="https://upload.wikimedia.org/wikipedia/commons/6/68/Logo_FPT_Education.png"
                                                  style="width: 185px;" alt="logo">                                           
                                         </div>
-
+                                        <c:set var="cookie" value="${pageContext.request.cookies}"/>
                                         <form action="login" method="post">
                                             <p class="mb-4" style="font-weight: 700; font-size: 18px">Please login to your account</p>
 
                                             <div class="form-outline mb-4">
                                                 <label class="form-label"  for="form2Example11">Username</label>
-                                                <input name="username" id="form2Example11" type="text"   class="form-control"
+                                                <input name="username" id="form2Example11" type="text" value="${cookie.cuser.value}" class="form-control"
                                                        placeholder="Username" />
 
                                             </div>
 
                                             <div class="form-outline mb-4">
                                                 <label class="form-label"  for="form2Example22">Password</label>
-                                                <input name="password" type="password" id="form2Example22" class="form-control" placeholder="Password"/>
-                                                <input class="mt-4" type="checkbox" name="check"/> Remember me 
+                                                <input name="password" type="password" id="form2Example22" value="${cookie.cpass.value}" class="form-control" placeholder="Password"/>
+                                                <input class="mt-4" type="checkbox" ${((cookie.crem!=null)?"checked":"")} name="check"/> Remember me 
                                             </div>
                                             
 

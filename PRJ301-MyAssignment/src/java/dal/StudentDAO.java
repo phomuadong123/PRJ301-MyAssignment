@@ -19,12 +19,12 @@ import model.Student;
  */
 public class StudentDAO extends DBContext {
 
-    public ArrayList<Student> studentByGroupID(int groupid) {
+    public ArrayList<Student> getStudentByGroupID(int groupid) {
         ArrayList<Student> student = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "select * from Student s left join Student_Group sg on s.studentid=sg.studentid\n"
+            String sql = " select * from Student s left join Student_Group sg on s.studentid=sg.studentid\n"
                     + "  left join [Group] g on g.groupId=sg.groupid\n"
                     + "  where g.groupId=?";
             stm = connection.prepareStatement(sql);
@@ -40,9 +40,10 @@ public class StudentDAO extends DBContext {
                 g.setGroupName(rs.getString("groupName"));
                 st.setGroup(g);
                 student.add(st);
+                
             }
         } catch (SQLException ex) {
-
+            System.out.println(ex);
         }
 
         return student;

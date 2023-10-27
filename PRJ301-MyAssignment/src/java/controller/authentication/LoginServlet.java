@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -76,9 +77,29 @@ public class LoginServlet extends HttpServlet {
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         
+        
         UserDAO userDAO = new UserDAO();
         User u = userDAO.loginUser(user, pass);
-        //tesst
+        
+        String rem = request.getParameter("check");
+
+        Cookie cu = new Cookie("cuser", user);
+        Cookie cp = new Cookie("cpass", pass);
+        Cookie cr = new Cookie("crem", rem);
+
+        if (rem != null) {
+            cu.setMaxAge(60 * 60 * 7 * 24);
+            cp.setMaxAge(60 * 60 * 7 * 24);
+            cr.setMaxAge(60 * 60 * 7 * 24);
+        } else {
+            cu.setMaxAge(0);
+            cp.setMaxAge(0);
+            cr.setMaxAge(0);
+        }
+
+        response.addCookie(cu);
+        response.addCookie(cp);
+        response.addCookie(cr);
         
         if (u != null) {            
             request.getSession().setAttribute("user", u);

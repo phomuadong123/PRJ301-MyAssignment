@@ -16,7 +16,7 @@
     </head>
     <body style=" margin: auto;width: 70%">
         
-        <%@include file="sideBar.jsp" %>
+        <%@include file="header.jsp" %>
         
         
         <table class="table table-bordered border-dark" >

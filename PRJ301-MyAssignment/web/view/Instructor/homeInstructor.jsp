@@ -16,7 +16,7 @@
 
 
 
-        <%@include file="sideBar.jsp" %>
+        <%@include file="header.jsp" %>
         <button type="button" class="btn btn-outline-warning disabled btn-rounded mt-2 mb-4 fs-1 fw-bold" >Academic Information for instructor</button>
 
         <table class="table align-middle mb-0 bg-white">
@@ -30,6 +30,23 @@
                     <td >
                         <a  href="http://localhost:9999/assignment/timetableInstructor">
                             <button type="button" class="btn btn-danger btn-rounded  mt-2 mb-2">Timetable For Instructor</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+         <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                    <th>Attendance report (Báo cáo điểm danh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td >
+                        <a  href="http://localhost:9999/assignment/report">
+                            <button type="button" class="btn btn-warning btn-rounded  mt-2 mb-2">Attendance report</button>
                         </a>
                     </td>
                 </tr>
