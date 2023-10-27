@@ -17,7 +17,7 @@
 
 
         <%@include file="header.jsp" %>
-        <button type="button" class="btn btn-outline-warning disabled btn-rounded mt-2 mb-4 fs-1 fw-bold" >Academic Information for instructor</button>
+        <button type="button" class="btn btn-outline-primary disabled btn-rounded mt-2 mb-4 fs-1 fw-bold" >Academic Information for instructor</button>
 
         <table class="table align-middle mb-0 bg-white">
             <thead class="bg-light">

@@ -19,7 +19,7 @@
         
         <h2>Singly activity Attendance</h2><br/>
         <p>Attendance for <b>${requestScope.ses.group.groupName}</b> with lecture <b>${requestScope.ses.instructor.fullName}</b> at slot 
-            <b>${requestScope.ses.slot.slotId}</b> on <b>${requestScope.ses.date}</b> in room <b>${requestScope.ses.room.roomId}</b> at FU-HL
+            <b>${requestScope.ses.slot.slotId}</b> on <b>${requestScope.ses.date}</b> in room <b>${requestScope.ses.room.rname}</b> at FU-HL 
         </p>
         
         <form action="add"  method="post">

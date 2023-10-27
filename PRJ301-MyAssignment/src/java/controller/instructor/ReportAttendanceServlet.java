@@ -6,6 +6,7 @@ package controller.instructor;
 
 import controller.authentication.BaseRequiredAuthenticatedControllerForInstructor;
 import dal.AttendanceDAO;
+import dal.GroupDAO;
 import dal.SessionDAO;
 import dal.StudentDAO;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import model.Attendance;
+import model.Group;
 import model.Session;
 import model.Student;
 import model.User;
@@ -30,10 +32,10 @@ public class ReportAttendanceServlet extends BaseRequiredAuthenticatedController
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
-        SessionDAO d = new SessionDAO();
+        GroupDAO d = new GroupDAO();
         user = (User) request.getSession().getAttribute("user");
 
-        ArrayList<Session> s = d.getAllReport(user.getInstructorId());
+        ArrayList<Group> s = d.getAllReport(user.getInstructorId());
         request.setAttribute("lists", s);
         String raw_groupid = request.getParameter("id");
         try {
@@ -46,7 +48,7 @@ public class ReportAttendanceServlet extends BaseRequiredAuthenticatedController
             StudentDAO l = new StudentDAO();
             ArrayList<Student> student = l.getStudentByGroupID(groupid);
             request.setAttribute("list", student);
-            System.out.println(groupid);
+           
 
             AttendanceDAO status = new AttendanceDAO();
             ArrayList<Attendance> attend = status.statusStudents(groupid);
@@ -59,10 +61,10 @@ public class ReportAttendanceServlet extends BaseRequiredAuthenticatedController
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
-        SessionDAO d = new SessionDAO();
+        GroupDAO d = new GroupDAO();
         user = (User) request.getSession().getAttribute("user");
 
-        ArrayList<Session> s = d.getAllReport(user.getInstructorId());
+        ArrayList<Group> s = d.getAllReport(user.getInstructorId());
         request.setAttribute("lists", s);
 
         String raw_groupid = request.getParameter("id");

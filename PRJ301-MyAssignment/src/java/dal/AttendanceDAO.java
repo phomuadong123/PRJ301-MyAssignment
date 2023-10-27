@@ -78,7 +78,7 @@ public class AttendanceDAO extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "   select * from Student s left join Student_Group sg on s.studentid=sg.studentid\n"
+            String sql = "   select a.status,* from Student s left join Student_Group sg on s.studentid=sg.studentid\n"
                     + "  left join [Group] g on g.groupId=sg.groupid left join Course c on c.courseId=g.groupId\n"
                     + "  left join [Session] ses on ses.[group] = g.groupId left join Attendance a on a.[session]=ses.id\n"
                     + "  and a.student=s.studentid left join Instructor i on i.instructorId=ses.instructor\n"

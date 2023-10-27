@@ -53,9 +53,10 @@ public class TakeAttendanceServlet extends BaseRequiredAuthenticatedControllerFo
             request.setAttribute("ses", session);
             
             AttendanceDAO t = new AttendanceDAO();
-            ArrayList<Attendance> list = t.getAllStudentsBySession(s.getDateByGroupId(groupid), groupid, instructor, slot, lectureid);           
+            ArrayList<Attendance> list = t.getAllStudentsBySession(s.getDateByGroupId(groupid,lectureid), groupid, instructor, slot, lectureid);           
             request.setAttribute("list", list);
-
+           
+            
             Random random = new Random();
             int randomNumber = random.nextInt(21);
             request.setAttribute("randomNumber", randomNumber);

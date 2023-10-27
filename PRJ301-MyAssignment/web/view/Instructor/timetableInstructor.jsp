@@ -32,13 +32,13 @@
                                 </c:forEach>
                             </select>
                     </th>
-                    <th>Mond</th>
+                    <th>Mon</th>
                     <th>Tues</th>
                     <th>Weds</th>
                     <th>Thurs</th>
                     <th>Fri</th>
-                    <th>Sun</th>
                     <th>Sat</th>
+                    <th>Sun</th>
                 </tr>
                 <tr>
                     <th>

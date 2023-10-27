@@ -32,7 +32,7 @@ public class SessionDAO extends DBContext {
         String sql = "select * from [Session] s inner join [Group] g on g.groupId=s.[group]\n"
                 + "              inner join Course c on c.courseId=g.course inner join Room r on s.room = r.roomId\n"
                 + "                inner join TimeSlot ts on ts.slotId=s.slot inner join Instructor i on i.instructorId=s.instructor\n"
-                + "            where i.instructorId=? and s.[date] < ? and s.[date] > ?";
+                + "            where i.instructorId=? and s.[date] <= ? and s.[date] >= ?";
 
         try {
             PreparedStatement st = connection.prepareCall(sql);
@@ -137,14 +137,15 @@ public class SessionDAO extends DBContext {
 
     }
 
-    public Date getDateByGroupId(int groupid) {
+    public Date getDateByGroupId(int groupid,int sesid) {
 
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "SELECT date from Session where [group] = ?";
+            String sql = "SELECT date from Session where [group] = ? and id=?";
             stm = connection.prepareStatement(sql);
             stm.setInt(1, groupid);
+            stm.setInt(2, sesid);
             rs = stm.executeQuery();
             if (rs.next()) {
 
