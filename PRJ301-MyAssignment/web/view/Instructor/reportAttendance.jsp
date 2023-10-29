@@ -12,13 +12,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     </head>
-    <body>
-
-
-
-        <table border="">
-            <tr>
+    <body style=" margin: auto;width: 70%">
+        <%@include file="header.jsp" %>
+        <table class="table">
+            <tr class="table table-bordered border-dark">
                 <td>Group name</td>
                 
             </tr>
@@ -29,11 +28,11 @@
                     </c:forEach>
                 </td>
             </tr>
-        </table>
+        </table >
 
 
-                        <table border="">
-                            <thead>
+                        <table class="table table-bordered border-dark" >
+                            <thead class="table-danger table-bordered border-dark">
                                 <tr>
                                     <th rowspan="2">NO</th>
                                     <th rowspan="2">GROUP</th>
