@@ -40,12 +40,39 @@ public class StudentDAO extends DBContext {
                 g.setGroupName(rs.getString("groupName"));
                 st.setGroup(g);
                 student.add(st);
-                
+
             }
         } catch (SQLException ex) {
             System.out.println(ex);
         }
 
         return student;
+    }
+
+    public Student getStuByUid(int uid) {
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from Student s join [User] u on s.studentid=u.studentId\n"
+                    + "where u.studentId = ?";
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, uid);
+            rs = stm.executeQuery();
+            if (rs.next()) {
+                Student st = new Student();
+                st.setStudentid(rs.getInt("studentid"));
+                st.setFullName(rs.getString("fullName"));
+                st.setRollnumber(rs.getString("rollnumber"));
+                st.setDob(rs.getDate("dob"));
+                st.setGender(rs.getBoolean("gender"));
+                st.setAddress(rs.getString("address"));
+                st.setDisplayname(rs.getString("displayname"));
+                return st;
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return null;
     }
 }

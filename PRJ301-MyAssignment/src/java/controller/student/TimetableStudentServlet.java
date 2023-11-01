@@ -7,6 +7,7 @@ package controller.student;
 
 import controller.authentication.BaseRequiredAuthenticatedControllerForStudent;
 import dal.SessionDAO;
+import dal.StudentDAO;
 import dal.TimeSlotDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 import model.Session;
+import model.Student;
 import model.TimeSlot;
 import model.User;
 
@@ -105,7 +107,9 @@ public class TimetableStudentServlet extends BaseRequiredAuthenticatedController
 
         }
         
-
+        StudentDAO s = new StudentDAO();
+        Student st = s.getStuByUid(user.getStudentId());
+        request.setAttribute("stu", st);
 
         request.getRequestDispatcher("view/student/timetableStudent.jsp").forward(request, response);
         

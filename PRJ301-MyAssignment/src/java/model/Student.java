@@ -20,7 +20,7 @@ public class Student {
     private String address;
     private String telephone;
     private String email;
-
+    private String displayname;    
     private Group group;
     
     public Student() {
@@ -32,6 +32,14 @@ public class Student {
 
     public Group getGroup() {
         return group;
+    }
+
+    public String getDisplayname() {
+        return displayname;
+    }
+
+    public void setDisplayname(String displayname) {
+        this.displayname = displayname;
     }
     
     

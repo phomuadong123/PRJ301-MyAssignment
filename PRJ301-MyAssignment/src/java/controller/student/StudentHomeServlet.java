@@ -6,6 +6,7 @@
 package controller.student;
 
 import controller.authentication.BaseRequiredAuthenticatedControllerForStudent;
+import dal.StudentDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Student;
 import model.User;
 
 /**
@@ -25,6 +27,9 @@ public class StudentHomeServlet extends BaseRequiredAuthenticatedControllerForSt
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
+        StudentDAO s = new StudentDAO();
+        Student st = s.getStuByUid(user.getStudentId());
+        request.setAttribute("stu", st);
         request.getRequestDispatcher("view/student/studentHome.jsp").forward(request, response);
     }
 
