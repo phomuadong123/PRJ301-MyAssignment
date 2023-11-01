@@ -67,7 +67,6 @@
                     <c:forEach begin="2" end="8" step="1" varStatus="w">
                         <td>
                             <c:forEach items="${requestScope.schedule}" var="l">
-                                <c:set var="week" value="${l.weekday}"/>
                                 <c:if test="${l.slot.slotId eq slot.slotId}">  
                                     <c:if test="${l.weekday eq w.index}">  
                                         <span style="font-weight: bold">${l.group.groupName}-<a href="https://flm.fpt.edu.vn/"><button type="button"  class="btn  btn-outline-danger  btn-rounded">View Materials</button></a></span><br>

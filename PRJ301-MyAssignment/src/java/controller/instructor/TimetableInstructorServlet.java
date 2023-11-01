@@ -41,7 +41,7 @@ public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControl
         ArrayList<TimeSlot> slots = timeSlotDAO.getAllTimeSlot();
          
         request.setAttribute("slots", slots);
-
+        
         LocalDate currentdate = LocalDate.now();
         int currentYear = currentdate.getYear();
         int currYearrr = currentdate.getYear();

@@ -41,10 +41,10 @@ public class TimetableStudentServlet extends BaseRequiredAuthenticatedController
         
         
         
-       TimeSlotDAO timeSlotDAO = new TimeSlotDAO();
+        TimeSlotDAO timeSlotDAO = new TimeSlotDAO();
         ArrayList<TimeSlot> slots = timeSlotDAO.getAllTimeSlot();
         request.setAttribute("slots", slots);
-        
+       
         int currentYear = currentdate.getYear();
         int currYearrr = currentdate.getYear();
         int[] listYear = {2021, 2022, 2023, 2024};
@@ -95,13 +95,16 @@ public class TimetableStudentServlet extends BaseRequiredAuthenticatedController
             SessionDAO le = new SessionDAO();
              user = (User) request.getSession().getAttribute("user");
             ArrayList<Session> l = le.timetable(user.getStudentId(), Date.valueOf(dateFrom), Date.valueOf(dateTo));
+            
             if (l == null) {
-
+                
             } else {
                 request.setAttribute("schedule", l);
+                
             }
 
         }
+        
 
 
         request.getRequestDispatcher("view/student/timetableStudent.jsp").forward(request, response);

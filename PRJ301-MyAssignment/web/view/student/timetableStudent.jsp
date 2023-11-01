@@ -12,13 +12,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-       
+
     </head>
     <body style=" margin: auto;width: 70%">
-        
+
         <%@include file="header.jsp" %>
-        
-        
+
+
         <table class="table table-bordered border-dark" >
             <thead  class="table-danger table-bordered border-dark">
                 <tr>
@@ -57,7 +57,7 @@
                         </c:forEach>
                 </tr>
             </thead>
-        </form>
+        
         <tbody>
             <c:forEach items="${requestScope.slots}" var="slot">
                 <tr>
@@ -67,28 +67,20 @@
                     <c:forEach begin="2" end="8" step="1" varStatus="w">
                         <td>
                             <c:forEach items="${requestScope.schedule}" var="l">
-                                <c:set var="week" value="${l.weekday}"/>
                                 <c:if test="${l.slot.slotId eq slot.slotId}">  
                                     <c:if test="${l.weekday eq w.index}">  
                                         <span style="font-weight: bold">${l.group.groupName}-<a href="https://flm.fpt.edu.vn/"><button type="button"  class="btn  btn-outline-danger  btn-rounded">View Materials</button></a></span><br>
                                         <span style="font-weight: bold">${l.group.course.code}</span><br>
                                         at ${l.room.rname}<br>
-                                        <c:set var="t" value="${l.status}"/>
-                                        <span ${t eq null?'font-weight: bold"':t eq  '' ? 'style="color: red;font-weight: bold"': 'style="color: green;font-weight: bold" '}>(${t eq null ? 'not yet': t eq '' ? 'not yet' : 'attended'})</span> 
-                                        <form action="takeAttendance" method="post">
-                                            <input type="hidden" name="instructor" value="${l.instructor.instructorId}" >
-                                            <input type="hidden" name="groupid" value="${l.group.groupId}" >
-                                            <input type="hidden" name="slot" value="${l.slot.slotId}" >
-                                            <input type="hidden" name="sessionid" value="${l.id}" >
-                                            <input class=" btn btn-danger btn-rounded" type="submit" value="Take Addtendance" >
-                                        </form>
+                                        <c:set var="t" value="${l.att.status}"/>
+                                        <span ${t eq null?'style="color: #B99B6B;font-weight: bold"': t eq  '' ? 'style="color: red; font-weight: bold"': 'style="color: green;font-weight: bold" '}>(${t eq false ? 'absent' : t eq true ? 'attended' : t})</span> <br/>
+                                        
                                     </c:if>
-                                </c:if> 
+                                </c:if>  
                             </c:forEach>
                         </td>
                     </c:forEach>
-
-                </tr>  
+                </tr>
             </c:forEach>
         </tbody>
     </table>

@@ -92,7 +92,7 @@ public class SessionDAO extends DBContext {
         PreparedStatement stm = null;
         ResultSet rs = null;
         try {
-            String sql = "select * from Student st LEFT JOIN Student_Group sg on st.studentid=sg.studentid\n"
+            String sql = "select a.[status],* from Student st LEFT JOIN Student_Group sg on st.studentid=sg.studentid\n"
                     + "LEFT JOIN [Group] g ON g.groupId=sg.groupid left join Course c on c.courseId=g.course\n"
                     + "LEFT JOIN [Session] s on s.[group]=g.groupId LEFT JOIN [Attendance] a on s.id=a.[session]\n"
                     + "and st.studentid=a.student left join Room r on s.room=r.roomId\n"
@@ -109,6 +109,11 @@ public class SessionDAO extends DBContext {
                 s.setId(rs.getInt("id"));
                 s.setStatus(rs.getBoolean("status"));
                 s.setWeekday(rs.getInt("weekday"));
+                
+                TimeSlot t = new TimeSlot();
+                t.setSlotId(rs.getInt("slot"));
+               
+                s.setSlot(t);
 
                 Group g = new Group();
                 g.setGroupId(rs.getInt("groupId"));
@@ -125,7 +130,10 @@ public class SessionDAO extends DBContext {
                 r.setRoomId(rs.getInt("roomId"));
                 r.setRname(rs.getString("rname"));
                 s.setRoom(r);
-
+                Attendance a = new Attendance();
+                a.setComment(rs.getString("comment"));
+                a.setStatus(rs.getBoolean("status"));
+                s.setAtt(a);
                 session.add(s);
             }
         } catch (SQLException ex) {
@@ -255,7 +263,7 @@ public class SessionDAO extends DBContext {
                 s.setStatus(rs.getBoolean("status"));
 
                 TimeSlot t = new TimeSlot();
-                t.setSlotId(rs.getInt("slotId"));
+                t.setSlotId(rs.getInt("slot"));
                 t.setTimeFrom(rs.getTime("timeFrom"));
                 t.setTimeTo(rs.getTime("timeTo"));
                 s.setSlot(t);
