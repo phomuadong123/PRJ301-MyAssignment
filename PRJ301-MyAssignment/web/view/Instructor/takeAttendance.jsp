@@ -66,8 +66,9 @@
                 </tbody>
             </table>
             <input type="hidden" name="sess" value="${param.sessionid}"/>
+            
             <div class="mt-4">
-                <input class="btn btn-danger btn-lg w-25" type="submit"  value="Save">
+                <input class="btn btn-danger btn-lg w-25" onclick="submitatt()" type="submit"  value="Save">
 
             </div>
 
@@ -95,6 +96,6 @@
                 </tr>
             </tbody>
         </table>
-
+        
     </body>
 </html>
