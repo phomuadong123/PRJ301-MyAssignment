@@ -87,9 +87,55 @@ public class SessionDAO extends DBContext {
 
     }
 
-  
+    public ArrayList<Session> timetable(int std, Date from, Date to) {
+        ArrayList<Session> session = new ArrayList<>();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            String sql = "select * from Student st LEFT JOIN Student_Group sg on st.studentid=sg.studentid\n"
+                    + "LEFT JOIN [Group] g ON g.groupId=sg.groupid left join Course c on c.courseId=g.course\n"
+                    + "LEFT JOIN [Session] s on s.[group]=g.groupId LEFT JOIN [Attendance] a on s.id=a.[session]\n"
+                    + "and st.studentid=a.student left join Room r on s.room=r.roomId\n"
+                    + "where st.studentid=? and s.[date] <= ? and s.[date] >= ?";
+            stm = connection.prepareStatement(sql);
+            stm.setInt(1, std);
+            stm.setDate(2, to);
+            stm.setDate(3, from);
+            rs = stm.executeQuery();
+            while (rs.next()) {
 
-    public Date getDateByGroupId(int groupid,int sesid) {
+                Session s = new Session();
+                s.setDate(rs.getDate("date"));
+                s.setId(rs.getInt("id"));
+                s.setStatus(rs.getBoolean("status"));
+                s.setWeekday(rs.getInt("weekday"));
+
+                Group g = new Group();
+                g.setGroupId(rs.getInt("groupId"));
+                g.setGroupName(rs.getString("groupName"));
+
+                Course c = new Course();
+                c.setCode(rs.getString("code"));
+                c.setName(rs.getString("name"));
+                c.setCourseId(rs.getInt("courseId"));
+                g.setCourse(c);
+                s.setGroup(g);
+
+                Room r = new Room();
+                r.setRoomId(rs.getInt("roomId"));
+                r.setRname(rs.getString("rname"));
+                s.setRoom(r);
+
+                session.add(s);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+
+        return session;
+    }
+
+    public Date getDateByGroupId(int groupid, int sesid) {
 
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -110,8 +156,8 @@ public class SessionDAO extends DBContext {
         }
         return null;
     }
-    
-     public ArrayList<Session> getAllByGroupId(int groupid) {
+
+    public ArrayList<Session> getAllByGroupId(int groupid) {
         ArrayList<Session> session = new ArrayList<>();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -127,8 +173,8 @@ public class SessionDAO extends DBContext {
                 session.add(s);
             }
         } catch (SQLException ex) {
-           
-        } 
+
+        }
         return session;
     }
 

@@ -20,8 +20,17 @@ public class Session {
     private Date date;
     private TimeSlot slot;
     private Room room;
+    private Attendance att;
     private ArrayList<Attendance> Attendance= new ArrayList<>();
     private int weekday;
+
+    public Attendance getAtt() {
+        return att;
+    }
+
+    public void setAtt(Attendance att) {
+        this.att = att;
+    }
 
     public Session() {
     }
