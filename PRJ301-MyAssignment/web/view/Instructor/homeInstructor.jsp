@@ -52,5 +52,22 @@
                 </tr>
             </tbody>
         </table>
+        
+           <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
+                <tr>
+                    <th>User detail (Thông tin người dùng)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td >
+                        <a  href="http://localhost:9999/assignment/profile">
+                            <button type="button" class="btn btn-outline-info btn-rounded  mt-2 mb-2">User detail</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>

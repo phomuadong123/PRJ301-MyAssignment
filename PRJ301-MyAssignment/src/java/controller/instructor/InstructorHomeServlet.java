@@ -6,11 +6,13 @@
 package controller.instructor;
 
 import controller.authentication.BaseRequiredAuthenticatedControllerForInstructor;
+import dal.InstructorDAO;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Instructor;
 import model.User;
 
 /**
@@ -22,6 +24,7 @@ public class InstructorHomeServlet extends BaseRequiredAuthenticatedControllerFo
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
+       
         request.getRequestDispatcher("view/Instructor/homeInstructor.jsp").forward(request, response);
     }
 

@@ -1,4 +1,4 @@
-<%-- 
+b<%-- 
     Document   : reportAttendance
     Created on : Oct 24, 2023, 8:51:53 PM
     Author     : tuant
@@ -70,6 +70,6 @@
                                 </tr>
                             </c:forEach>
                             </tbody>
-                        </table>
-                        </body>
-                        </html>
+       </table>
+</body>
+</html>
