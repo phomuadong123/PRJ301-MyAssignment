@@ -6,7 +6,7 @@ b<%--
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -64,9 +64,9 @@ b<%--
                                             </c:if>
                                             </c:forEach>
                                             <c:set var="size" value="${requestScope.listSession.size()}"/>
-                                <fmt:formatNumber var="aa" value="${p/size*100}" pattern="##"/>
+                                
                                 <td>${p}/${size}</td>      
-                                <td ${aa >= 10 ? 'style="color:red"':''} >${aa}%</td>
+                                <td ${p/size*100 >= 10 ? 'style="color:red"':''} >${p/size*100}%</td>
                                 </tr>
                             </c:forEach>
                             </tbody>
