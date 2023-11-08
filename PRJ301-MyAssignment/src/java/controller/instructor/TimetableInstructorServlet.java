@@ -35,11 +35,10 @@ public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControl
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response, User user) throws ServletException, IOException {
         String raw_week = request.getParameter("week");
-        String year_raw = request.getParameter("year");
+        String raw_year = request.getParameter("year");
 
         TimeSlotDAO timeSlotDAO = new TimeSlotDAO();
         ArrayList<TimeSlot> slots = timeSlotDAO.getAllTimeSlot();
-         
         request.setAttribute("slots", slots);
         
         LocalDate currentdate = LocalDate.now();
@@ -47,13 +46,14 @@ public class TimetableInstructorServlet extends BaseRequiredAuthenticatedControl
         int currYearrr = currentdate.getYear();
         int[] listYear = {2021, 2022, 2023, 2024};
         request.setAttribute("listYear", listYear);
+        
         ArrayList<String> list = new ArrayList<>();
-        if (year_raw == null) {
+        if (raw_year == null) {
             // get current year
             list = getAllDayWeek(currentYear);
         } else {
             // get year when year_raw not null
-            currentYear = Integer.parseInt(year_raw);
+            currentYear = Integer.parseInt(raw_year);
             list = getAllDayWeek(currentYear);
         }
         request.setAttribute("yearCurrent", currentYear);

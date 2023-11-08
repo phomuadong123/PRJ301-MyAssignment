@@ -12,13 +12,13 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-       
+
     </head>
     <body style=" margin: auto;width: 70%">
-        
+
         <%@include file="header.jsp" %>
-        
-        
+
+
         <table class="table table-bordered border-dark" >
             <thead  class="table-danger table-bordered border-dark">
                 <tr>
@@ -26,11 +26,11 @@
                         <form action="timetableInstructor" method="get" id="formSubmit">
                             Year
                             <select name="year" id="years"  onchange="formSubmitYear()" >
-                                <c:set var="yearC" value="${requestScope.yearCurrent}"/>
                                 <c:forEach items="${requestScope.listYear}" var="year">
-                                    <option value="${year}" ${year eq yearC ? 'selected' : ''}>${year}</option>
+                                    <option value="${year}" ${year eq requestScope.yearCurrent ? 'selected' : ''}>${year}</option>
                                 </c:forEach>
                             </select>
+                        
                     </th>
                     <th>Mon</th>
                     <th>Tues</th>
@@ -45,10 +45,9 @@
                         Week:
                         <select name="week" onchange="formSubmit()" >
                             <c:set var="t" value="0"/>
-                            <c:set var="currentweek" value="${requestScope.current}"/>
                             <c:forEach items="${requestScope.list}" var="week">
                                 <c:set var="t" value="${t+1}"/>
-                                <option value="${t}" ${ t eq currentweek ? 'selected':''}>${week}</option>
+                                <option value="${t}" ${ t eq requestScope.current ? 'selected':''}>${week}</option>
                             </c:forEach>
                         </select>
                     </th>
